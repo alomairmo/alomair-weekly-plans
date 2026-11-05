@@ -913,11 +913,28 @@ button:active {
   font-weight: 700;
 }
 
-.plan-homework {
+.plan-homework,
+.plan-objectives {
   min-width: 0;
   padding: 11px 12px;
   background: var(--color-page);
   border-right: 2px solid var(--color-border);
+}
+
+.objectives-list {
+  margin: 0;
+  padding-right: 21px;
+  font-size: 13px;
+  line-height: 1.7;
+  animation: homework-in 160ms ease-out;
+}
+
+.objectives-list li {
+  padding-right: 2px;
+}
+
+.objectives-list li + li {
+  margin-top: 4px;
 }
 
 .plan-homework p {
@@ -932,7 +949,8 @@ button:active {
   to { opacity: 1; }
 }
 
-.edit-homework {
+.edit-homework,
+.edit-objectives {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -948,12 +966,15 @@ button:active {
   font-weight: 700;
 }
 
-.edit-homework:hover:not(:disabled) {
+.edit-homework:hover:not(:disabled),
+.edit-objectives:hover:not(:disabled) {
   color: var(--color-text);
 }
 
 .edit-homework:disabled,
-.homework-editor-actions button:disabled {
+.edit-objectives:disabled,
+.homework-editor-actions button:disabled,
+.objectives-editor-actions button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
@@ -972,14 +993,45 @@ button:active {
   resize: vertical;
 }
 
-.homework-editor-actions {
+.objectives-editor label {
+  display: grid;
+  grid-template-columns: 55px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.objectives-editor input {
+  width: 100%;
+  min-height: 44px;
+  padding: 7px 9px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--control-radius);
+  font-size: 13px;
+}
+
+.objectives-editor small {
+  display: block;
+  color: var(--color-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.homework-editor-actions,
+.objectives-editor-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 8px;
 }
 
-.homework-editor-actions button {
+.homework-editor-actions button,
+.objectives-editor-actions button {
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -991,28 +1043,33 @@ button:active {
   font-weight: 700;
 }
 
-.save-homework {
+.save-homework,
+.save-objectives {
   color: var(--color-surface);
   background: var(--color-accent);
   border: 1px solid var(--color-accent);
 }
 
-.save-homework:hover:not(:disabled) {
+.save-homework:hover:not(:disabled),
+.save-objectives:hover:not(:disabled) {
   background: var(--color-text);
   border-color: var(--color-text);
 }
 
-.cancel-homework {
+.cancel-homework,
+.cancel-objectives {
   color: var(--color-text);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
 }
 
-.cancel-homework:hover:not(:disabled) {
+.cancel-homework:hover:not(:disabled),
+.cancel-objectives:hover:not(:disabled) {
   border-color: var(--color-accent);
 }
 
-.homework-modified {
+.homework-modified,
+.objectives-modified {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1161,7 +1218,7 @@ button:active {
   .plan-list-heading,
   .plan-row {
     display: grid;
-    grid-template-columns: minmax(145px, 0.72fr) minmax(230px, 1.22fr) minmax(250px, 1.5fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
   }
 
@@ -1179,16 +1236,40 @@ button:active {
     padding: 18px 14px;
   }
 
-  .plan-row > * + * {
+  .plan-row > * {
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .plan-row > *:nth-child(even) {
     border-right: 1px solid var(--color-border);
     padding-right: 20px;
   }
 
-  .plan-homework {
+  .plan-homework,
+  .plan-objectives {
     min-height: 100%;
     background: transparent;
-    border-right: 0;
   }
+}
+
+@media (min-width: 1200px) {
+  .plan-list-heading,
+  .plan-row {
+    grid-template-columns: minmax(120px, 0.65fr) minmax(190px, 1fr) minmax(230px, 1.2fr) minmax(230px, 1.2fr);
+    gap: 16px;
+  }
+
+  .plan-row > *:nth-child(even) {
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .plan-row > * + * {
+    border-right: 1px solid var(--color-border);
+    padding-right: 16px;
+  }
+
 }
 
 @media (min-width: 900px) {
@@ -1504,7 +1585,10 @@ button:active {
   .plan-downloads,
   .plan-status,
   .edit-homework,
+  .edit-objectives,
   .homework-editor-actions,
+  .objectives-editor-actions,
+  .objectives-editor small,
   .reset-lesson,
   .lesson-spinner,
   .modified-badge,
@@ -1531,7 +1615,7 @@ button:active {
   .plan-list-heading,
   .plan-row {
     display: grid;
-    grid-template-columns: 0.75fr 1.2fr 1.6fr;
+    grid-template-columns: 0.65fr 1fr 1.25fr 1.25fr;
     gap: 8px;
     break-inside: avoid;
   }
@@ -1551,6 +1635,8 @@ button:active {
 
   .plan-subject h3,
   .plan-homework p,
+  .objectives-list,
+  .objectives-editor input,
   .lesson-select-wrap select {
     font-size: 9px;
   }
@@ -1561,8 +1647,19 @@ button:active {
     border: 0;
   }
 
-  .plan-homework {
+  .plan-homework,
+  .plan-objectives {
     padding: 3px;
+  }
+
+  .objectives-editor label {
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .objectives-editor input {
+    min-height: 24px;
+    padding: 2px;
   }
 
   .weekly-lesson {
