@@ -19,20 +19,17 @@ import {
   X,
 } from 'lucide-react'
 import { trpc } from '@/providers/trpc'
+import type {
+  ScheduleLesson,
+  ScheduleSubject,
+  SchoolClass,
+  Teacher,
+} from '@contracts/types'
 import {
   getCurriculumLessons,
   getDefaultLessonId,
   planWeeks,
 } from '@/data/weeklyPlan'
-
-type ScheduleLesson = {
-  teacherId: number
-  classId: string
-  subject: string
-}
-
-type Teacher = { id: number; name: string }
-type SchoolClass = { id: string; name: string }
 
 type WeeklyPlanProps = {
   classId: string
@@ -40,6 +37,7 @@ type WeeklyPlanProps = {
   classes: SchoolClass[]
   week: number
   lessons: ScheduleLesson[]
+  subjects: ScheduleSubject[]
   teachers: Teacher[]
   teacherId?: number
   teacherName?: string
@@ -51,6 +49,7 @@ type PlanRow = {
   key: string
   classId: string
   className: string
+  subjectKey: string
   name: string
   periods: number
   teachers: string[]
@@ -66,6 +65,7 @@ export default function WeeklyPlan({
   classes,
   week,
   lessons,
+  subjects,
   teachers,
   teacherId,
   teacherName,
@@ -162,12 +162,12 @@ export default function WeeklyPlan({
 
   const planRows = useMemo<PlanRow[]>(() => {
     const seen = new Set<string>()
-    return lessons
+    const rows = lessons
       .filter((lesson) => isTeacherView
         ? lesson.teacherId === teacherId
         : lesson.classId === classId)
       .filter((lesson) => {
-        const key = overrideKey(lesson.classId, lesson.subject)
+        const key = overrideKey(lesson.classId, lesson.subjectKey)
         if (seen.has(key)) return false
         seen.add(key)
         return true
@@ -175,22 +175,29 @@ export default function WeeklyPlan({
       .map((lesson) => {
         const subjectLessons = lessons.filter(
           (item) => item.classId === lesson.classId
-            && item.subject === lesson.subject
+            && item.subjectKey === lesson.subjectKey
             && (!isTeacherView || item.teacherId === teacherId),
         )
         const teacherIds = isTeacherView
           ? [teacherId]
           : [...new Set(subjectLessons.map((item) => item.teacherId))]
         return {
-          key: overrideKey(lesson.classId, lesson.subject),
+          key: overrideKey(lesson.classId, lesson.subjectKey),
           classId: lesson.classId,
           className: classes.find((item) => item.id === lesson.classId)?.name ?? lesson.classId,
+          subjectKey: lesson.subjectKey,
           name: lesson.subject,
           periods: subjectLessons.length,
           teachers: teacherIds.map((id) => teachers[id]?.name).filter(Boolean),
         }
       })
-  }, [classId, classes, isTeacherView, lessons, teacherId, teachers])
+    const subjectOrder = new Map(
+      subjects.map((subject) => [overrideKey(subject.classId, subject.subjectKey), subject.sortOrder]),
+    )
+    return rows.sort((a, b) => (
+      (subjectOrder.get(a.key) ?? 1000) - (subjectOrder.get(b.key) ?? 1000)
+    ))
+  }, [classId, classes, isTeacherView, lessons, subjects, teacherId, teachers])
 
   const savedOverrides = useMemo(
     () => Object.fromEntries(
@@ -218,7 +225,7 @@ export default function WeeklyPlan({
       return next
     })
     setPendingSubject(row.key)
-    setLesson.mutate({ classId: row.classId, subject: row.name, week, lessonId })
+    setLesson.mutate({ classId: row.classId, subject: row.subjectKey, week, lessonId })
   }
 
   function startHomeworkEdit(rowKey: string, homework: string) {
@@ -249,7 +256,7 @@ export default function WeeklyPlan({
     setPendingSubject(row.key)
     setObjectives.mutate({
       classId: row.classId,
-      subject: row.name,
+      subject: row.subjectKey,
       week,
       lessonId,
       objectives,
@@ -268,7 +275,7 @@ export default function WeeklyPlan({
     setPendingSubject(row.key)
     setHomework.mutate({
       classId: row.classId,
-      subject: row.name,
+      subject: row.subjectKey,
       week,
       lessonId,
       homeworkText,
@@ -287,6 +294,7 @@ export default function WeeklyPlan({
         schoolClass: { id: classId, name: className },
         week,
         lessons,
+        subjects,
         teachers,
         overrides,
       })
@@ -310,6 +318,7 @@ export default function WeeklyPlan({
         classes,
         week,
         lessons,
+        subjects,
         teachers,
         overrides,
         onProgress: (completed, total) => setExportProgress({ completed, total }),
@@ -417,7 +426,7 @@ export default function WeeklyPlan({
             <span>الواجب المرتبط</span>
           </div>
           {planRows.map((row) => {
-            const curriculumLessons = getCurriculumLessons(row.classId, row.name)
+            const curriculumLessons = getCurriculumLessons(row.classId, row.subjectKey)
             const defaultId = getDefaultLessonId(week)
             const override = savedOverrides[row.key]
             const selectedId = localEdits[row.key]
