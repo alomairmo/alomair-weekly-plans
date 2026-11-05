@@ -2,29 +2,21 @@ import html2canvas from 'html2canvas-pro'
 import { jsPDF } from 'jspdf'
 import JSZip from 'jszip'
 import { getCurriculumLessons, planWeeks } from '@/data/weeklyPlan'
+import type {
+  PlanOverride,
+  ScheduleLesson,
+  ScheduleSubject,
+  SchoolClass,
+  Teacher,
+} from '@contracts/types'
 
-type ScheduleLesson = {
-  teacherId: number
-  classId: string
-  subject: string
-}
-
-type Teacher = { id: number; name: string }
-type SchoolClass = { id: string; name: string }
-
-export type PlanOverride = {
-  classId: string
-  subject: string
-  week: number
-  lessonId: string
-  homeworkText: string | null
-  objectives: string[] | null
-}
+export type { PlanOverride } from '@contracts/types'
 
 type ExportInput = {
   schoolClass: SchoolClass
   week: number
   lessons: ScheduleLesson[]
+  subjects: ScheduleSubject[]
   teachers: Teacher[]
   overrides: PlanOverride[]
 }
@@ -43,16 +35,23 @@ function escapeHtml(value: string) {
   })[character]!)
 }
 
-function planRows({ schoolClass, week, lessons, teachers, overrides }: ExportInput) {
+function planRows({ schoolClass, week, lessons, subjects, teachers, overrides }: ExportInput) {
   const classLessons = lessons.filter((lesson) => lesson.classId === schoolClass.id)
-  const subjects = [...new Set(classLessons.map((lesson) => lesson.subject))]
-  return subjects.map((subject) => {
-    const subjectLessons = classLessons.filter((lesson) => lesson.subject === subject)
+  const subjectOrder = new Map(
+    subjects
+      .filter((subject) => subject.classId === schoolClass.id)
+      .map((subject) => [subject.subjectKey, subject.sortOrder]),
+  )
+  const subjectKeys = [...new Set(classLessons.map((lesson) => lesson.subjectKey))]
+    .sort((a, b) => (subjectOrder.get(a) ?? 1000) - (subjectOrder.get(b) ?? 1000))
+  return subjectKeys.map((subjectKey) => {
+    const subjectLessons = classLessons.filter((lesson) => lesson.subjectKey === subjectKey)
+    const subject = subjectLessons[0]?.subject ?? subjectKey
     const override = overrides.find(
-      (item) => item.classId === schoolClass.id && item.subject === subject && item.week === week,
+      (item) => item.classId === schoolClass.id && item.subject === subjectKey && item.week === week,
     )
     const lessonId = override?.lessonId ?? String(week)
-    const curriculumLessons = getCurriculumLessons(schoolClass.id, subject)
+    const curriculumLessons = getCurriculumLessons(schoolClass.id, subjectKey)
     const lesson = curriculumLessons.find((item) => item.id === lessonId)
       ?? curriculumLessons[week - 1]
     const homework = override?.lessonId === lesson.id && override.homeworkText
@@ -186,6 +185,7 @@ export async function downloadAllPlansZip({
   classes,
   week,
   lessons,
+  subjects,
   teachers,
   overrides,
   onProgress,
@@ -193,13 +193,14 @@ export async function downloadAllPlansZip({
   classes: SchoolClass[]
   week: number
   lessons: ScheduleLesson[]
+  subjects: ScheduleSubject[]
   teachers: Teacher[]
   overrides: PlanOverride[]
   onProgress?: (completed: number, total: number) => void
 }) {
   const zip = new JSZip()
   for (const [index, schoolClass] of classes.entries()) {
-    const pdf = await createPlanPdf({ schoolClass, week, lessons, teachers, overrides })
+    const pdf = await createPlanPdf({ schoolClass, week, lessons, subjects, teachers, overrides })
     zip.file(planFileName(schoolClass, week), pdf.output('arraybuffer'))
     onProgress?.(index + 1, classes.length)
   }
