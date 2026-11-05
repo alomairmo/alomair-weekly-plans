@@ -1667,3 +1667,528 @@ button:active {
     padding: 6px;
   }
 }
+
+input {
+  font: inherit;
+}
+
+input:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.edit-schedule-control {
+  margin-top: 16px;
+}
+
+.edit-schedule-button {
+  width: 100%;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  color: var(--color-surface);
+  background: var(--color-text);
+  border: 1px solid var(--color-text);
+  border-radius: var(--control-radius);
+  font-size: 14px;
+  font-weight: 700;
+  transition: background-color 160ms ease-out, border-color 160ms ease-out;
+}
+
+.edit-schedule-button:hover:not(:disabled),
+.edit-schedule-button.is-active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.edit-schedule-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.edit-schedule-control p {
+  margin: 7px 0 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.data-connection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-top: 12px;
+  padding-top: 12px;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-border);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.data-connection.is-error {
+  color: oklch(0.52 0.19 25);
+}
+
+.data-connection button {
+  min-height: 44px;
+  padding: 6px 10px;
+  color: var(--color-accent);
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--control-radius);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.schedule-editor {
+  min-width: 0;
+}
+
+.editor-intro {
+  padding: 16px;
+  background: var(--color-accent-soft);
+  border-right: 3px solid var(--color-accent);
+}
+
+.editor-intro h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.editor-intro p {
+  margin: 5px 0 0;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.editor-status {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 2px;
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.editor-status svg {
+  flex: 0 0 auto;
+  color: var(--color-accent);
+}
+
+.editor-status.is-error {
+  color: oklch(0.52 0.19 25);
+  font-weight: 700;
+}
+
+.subjects-editor,
+.lessons-editor {
+  margin-top: 12px;
+  padding: 16px 4px;
+  background: var(--color-surface);
+  border-top: 2px solid var(--color-text);
+}
+
+.editor-section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.editor-section-heading h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.editor-section-heading p {
+  margin: 3px 0 0;
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.editor-section-heading > button {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 13px;
+  color: var(--color-surface);
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--control-radius);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.editor-section-heading > button:hover:not(:disabled) {
+  background: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.editor-section-heading > button:disabled,
+.subject-move-actions button:disabled,
+.lesson-move-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.subject-editor-list {
+  border-top: 1px solid var(--color-border);
+}
+
+.subject-editor-row {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.subject-order {
+  color: var(--color-accent);
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.subject-editor-row label {
+  min-width: 0;
+}
+
+.subject-editor-row input {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--control-radius);
+  font-size: 14px;
+}
+
+.subject-move-actions,
+.lesson-move-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.subject-move-actions button {
+  width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  background: var(--color-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--control-radius);
+}
+
+.subject-move-actions button:hover:not(:disabled),
+.lesson-move-actions button:hover:not(:disabled) {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.lesson-editor-days {
+  display: grid;
+  gap: 20px;
+}
+
+.lesson-editor-day h4 {
+  margin: 0;
+  padding: 8px 10px;
+  color: var(--color-text);
+  background: var(--color-page);
+  border-bottom: 1px solid var(--color-text);
+  font-size: 17px;
+}
+
+.lesson-editor-row {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lesson-editor-row.is-empty {
+  color: var(--color-muted);
+  background: var(--color-page);
+  font-size: 13px;
+}
+
+.editor-period {
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.lesson-editor-fields {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.lesson-editor-fields label > span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.lesson-editor-fields select {
+  width: 100%;
+  min-height: 44px;
+  padding: 7px 9px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--control-radius);
+  font-size: 13px;
+}
+
+.lesson-move-actions {
+  grid-column: 2;
+  flex-wrap: wrap;
+}
+
+.lesson-move-actions button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 10px;
+  color: var(--color-text);
+  background: var(--color-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--control-radius);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.print-only-schedule {
+  display: none;
+}
+
+@media (min-width: 560px) {
+  .editor-section-heading {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .editor-section-heading > button {
+    flex: 0 0 auto;
+  }
+
+  .subjects-editor,
+  .lessons-editor {
+    padding-inline: 14px;
+  }
+
+  .lesson-editor-row {
+    grid-template-columns: 74px minmax(0, 1fr) auto;
+    align-items: end;
+    padding-inline: 8px;
+  }
+
+  .lesson-editor-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lesson-move-actions {
+    grid-column: auto;
+  }
+
+  .lesson-move-actions button span {
+    display: none;
+  }
+}
+
+@media (min-width: 1200px) {
+  .lesson-editor-days {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+@media print {
+  .schedule-editor {
+    display: none !important;
+  }
+
+  .print-only-schedule {
+    display: block;
+  }
+}
+
+
+.install-app {
+  position: relative;
+  z-index: 20;
+  padding-top: env(safe-area-inset-top);
+  color: #fff;
+  background: #321327;
+  border-bottom: 1px solid rgb(255 255 255 / 14%);
+}
+
+.install-app-main {
+  width: min(100%, 1500px);
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-inline: auto;
+  padding: 10px 20px;
+}
+
+.install-app-icon {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  box-shadow: 0 3px 12px rgb(0 0 0 / 20%);
+}
+
+.install-app-copy {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.install-app-copy strong {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.install-app-copy span {
+  color: rgb(255 255 255 / 76%);
+  font-size: 13px;
+}
+
+.install-app-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-inline-start: auto;
+}
+
+.install-app-button,
+.install-app-dismiss {
+  min-height: 44px;
+  border: 0;
+  color: #321327;
+  background: #fff;
+}
+
+.install-app-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.install-app-button:hover {
+  background: var(--color-accent-soft);
+}
+
+.install-app-button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.install-app-dismiss {
+  width: 44px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  color: rgb(255 255 255 / 78%);
+  background: transparent;
+  border-radius: 50%;
+}
+
+.install-app-dismiss:hover {
+  color: #fff;
+  background: rgb(255 255 255 / 10%);
+}
+
+.install-app-instructions {
+  width: min(100%, 1500px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-inline: auto;
+  padding: 9px 76px 11px;
+  color: rgb(255 255 255 / 88%);
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  font-size: 13px;
+  text-align: center;
+}
+
+.install-app-instructions svg {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 640px) {
+  .install-app-main {
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    padding: 10px 12px;
+  }
+
+  .install-app-copy {
+    flex: 1 1 calc(100% - 54px);
+  }
+
+  .install-app-copy strong {
+    font-size: 14px;
+  }
+
+  .install-app-copy span {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .install-app-actions {
+    width: 100%;
+    margin-inline-start: 0;
+  }
+
+  .install-app-button {
+    flex: 1;
+  }
+
+  .install-app-instructions {
+    padding: 9px 16px 11px;
+    line-height: 1.6;
+  }
+}
+
+@media (display-mode: standalone) {
+  .install-app {
+    display: none;
+  }
+}
+
+@media print {
+  .install-app {
+    display: none !important;
+  }
+}
