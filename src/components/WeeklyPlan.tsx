@@ -14,6 +14,7 @@ import {
   Pencil,
   RotateCcw,
   Save,
+  Target,
   UserRound,
   X,
 } from 'lucide-react'
@@ -74,8 +75,11 @@ export default function WeeklyPlan({
   const isTeacherView = teacherId !== undefined
   const [localEdits, setLocalEdits] = useState<Record<string, string>>({})
   const [localHomeworkEdits, setLocalHomeworkEdits] = useState<Record<string, string>>({})
+  const [localObjectiveEdits, setLocalObjectiveEdits] = useState<Record<string, string[]>>({})
   const [editingSubject, setEditingSubject] = useState<string | null>(null)
+  const [editingObjectives, setEditingObjectives] = useState<string | null>(null)
   const [homeworkDraft, setHomeworkDraft] = useState('')
+  const [objectivesDraft, setObjectivesDraft] = useState<string[]>([])
   const [pendingSubject, setPendingSubject] = useState<string | null>(null)
   const [savedSubject, setSavedSubject] = useState<string | null>(null)
   const [saveError, setSaveError] = useState<string | null>(null)
@@ -137,6 +141,25 @@ export default function WeeklyPlan({
     onSettled: () => setPendingSubject(null),
   })
 
+  const setObjectives = trpc.weeklyPlan.setObjectives.useMutation({
+    onSuccess: async (_data, variables) => {
+      setSavedSubject(variables.subject)
+      setSaveError(null)
+      setEditingObjectives(null)
+      await invalidatePlan()
+    },
+    onError: (_error, variables) => {
+      const key = overrideKey(variables.classId, variables.subject)
+      setLocalObjectiveEdits((current) => {
+        const next = { ...current }
+        delete next[key]
+        return next
+      })
+      setSaveError(`تعذر حفظ أهداف مادة ${variables.subject}. حاول مرة أخرى.`)
+    },
+    onSettled: () => setPendingSubject(null),
+  })
+
   const planRows = useMemo<PlanRow[]>(() => {
     const seen = new Set<string>()
     return lessons
@@ -182,8 +205,14 @@ export default function WeeklyPlan({
     setSavedSubject(null)
     setSaveError(null)
     setEditingSubject(null)
+    setEditingObjectives(null)
     setLocalEdits((current) => ({ ...current, [row.key]: lessonId }))
     setLocalHomeworkEdits((current) => {
+      const next = { ...current }
+      delete next[row.key]
+      return next
+    })
+    setLocalObjectiveEdits((current) => {
       const next = { ...current }
       delete next[row.key]
       return next
@@ -195,8 +224,36 @@ export default function WeeklyPlan({
   function startHomeworkEdit(rowKey: string, homework: string) {
     setSavedSubject(null)
     setSaveError(null)
+    setEditingObjectives(null)
     setEditingSubject(rowKey)
     setHomeworkDraft(homework)
+  }
+
+  function startObjectivesEdit(rowKey: string, objectives: string[]) {
+    setSavedSubject(null)
+    setSaveError(null)
+    setEditingSubject(null)
+    setEditingObjectives(rowKey)
+    setObjectivesDraft(objectives.slice(0, 3))
+  }
+
+  function saveObjectives(row: PlanRow, lessonId: string) {
+    const objectives = objectivesDraft.map((objective) => objective.trim()).filter(Boolean).slice(0, 3)
+    if (objectives.length === 0) {
+      setSaveError('اكتب هدفًا واحدًا على الأقل، وبحد أقصى ثلاثة أهداف.')
+      return
+    }
+    setSaveError(null)
+    setSavedSubject(null)
+    setLocalObjectiveEdits((current) => ({ ...current, [row.key]: objectives }))
+    setPendingSubject(row.key)
+    setObjectives.mutate({
+      classId: row.classId,
+      subject: row.name,
+      week,
+      lessonId,
+      objectives,
+    })
   }
 
   function saveHomework(row: PlanRow, lessonId: string) {
@@ -276,7 +333,7 @@ export default function WeeklyPlan({
         <div>
           <strong>توزيع استرشادي قابل للتعديل</strong>
           <p>
-            الدروس والواجبات مقترحة بحسب مواد الجدول ومجالات المناهج، وليست توزيعًا رسميًا صادرًا عن المدرسة.
+            الدروس والأهداف والواجبات مقترحة بحسب مواد الجدول ومجالات المناهج، وليست توزيعًا رسميًا صادرًا عن المدرسة.
             راجع الكتاب وتوزيع المعلم قبل الاعتماد. التعديلات تُحفظ في خطة المدرسة المشتركة.
           </p>
           <a
@@ -341,7 +398,7 @@ export default function WeeklyPlan({
         ) : savedSubject ? (
           <><CheckCircle2 size={16} aria-hidden="true" /> حُفظ تعديل {savedSubject}، وسيبقى بعد إعادة فتح الصفحة.</>
         ) : (
-          <><Cloud size={16} aria-hidden="true" /> اختر درسًا أو عدّل الواجب يدويًا؛ تُحفظ التغييرات تلقائيًا بعد الحفظ.</>
+          <><Cloud size={16} aria-hidden="true" /> اختر درسًا أو عدّل الأهداف أو الواجب؛ تُحفظ التغييرات في الخطة المشتركة.</>
         )}
       </div>
 
@@ -356,6 +413,7 @@ export default function WeeklyPlan({
           <div className="plan-list-heading" aria-hidden="true">
             <span>{isTeacherView ? 'الفصل والمادة' : 'المادة والمعلم'}</span>
             <span>الدرس المفترض</span>
+            <span>أهداف الدرس</span>
             <span>الواجب المرتبط</span>
           </div>
           {planRows.map((row) => {
@@ -373,10 +431,18 @@ export default function WeeklyPlan({
             const homework = localHomeworkEdits[row.key]
               ?? savedHomework
               ?? selectedLesson.homework
+            const savedObjectives = override?.lessonId === selectedLesson.id
+              ? override.objectives
+              : null
+            const objectives = localObjectiveEdits[row.key]
+              ?? savedObjectives
+              ?? selectedLesson.objectives
             const isPending = pendingSubject === row.key
             const isModified = selectedId !== defaultId
             const isEditing = editingSubject === row.key
+            const isEditingObjectives = editingObjectives === row.key
             const hasCustomHomework = Boolean(localHomeworkEdits[row.key] || savedHomework)
+            const hasCustomObjectives = Boolean(localObjectiveEdits[row.key]?.length || savedObjectives?.length)
 
             return (
               <article className="plan-row" role="listitem" key={row.key}>
@@ -426,6 +492,74 @@ export default function WeeklyPlan({
                   </div>
                   {override && override.lessonId !== defaultId && !isPending && (
                     <span className="modified-badge"><Check size={12} aria-hidden="true" /> درس محفوظ بتعديل</span>
+                  )}
+                </div>
+
+                <div className="plan-objectives">
+                  <div className="plan-field-label">
+                    <span><Target size={15} aria-hidden="true" /> أهداف الدرس</span>
+                    {!isEditingObjectives && (
+                      <button
+                        type="button"
+                        className="edit-objectives"
+                        onClick={() => startObjectivesEdit(row.key, objectives)}
+                        disabled={isPending || exportMode !== null}
+                      >
+                        <Pencil size={13} aria-hidden="true" /> تعديل الأهداف
+                      </button>
+                    )}
+                  </div>
+                  {isEditingObjectives ? (
+                    <div className="objectives-editor">
+                      {[0, 1, 2].map((index) => (
+                        <label key={index}>
+                          <span>الهدف {toArabicNumber(index + 1)}</span>
+                          <input
+                            type="text"
+                            value={objectivesDraft[index] ?? ''}
+                            onChange={(event) => setObjectivesDraft((current) => {
+                              const next = [...current]
+                              next[index] = event.target.value
+                              return next
+                            })}
+                            maxLength={500}
+                            autoFocus={index === 0}
+                            aria-label={`الهدف ${toArabicNumber(index + 1)} لدرس ${row.name}${isTeacherView ? ` لفصل ${row.className}` : ''}`}
+                          />
+                        </label>
+                      ))}
+                      <small>اكتب هدفًا واحدًا على الأقل، واترك الحقول غير المستخدمة فارغة.</small>
+                      <div className="objectives-editor-actions">
+                        <button
+                          type="button"
+                          className="save-objectives"
+                          onClick={() => saveObjectives(row, selectedLesson.id)}
+                          disabled={isPending}
+                        >
+                          {isPending ? <LoaderCircle className="spin" size={15} aria-hidden="true" /> : <Save size={15} aria-hidden="true" />}
+                          {isPending ? 'جارٍ الحفظ…' : 'حفظ الأهداف'}
+                        </button>
+                        <button
+                          type="button"
+                          className="cancel-objectives"
+                          onClick={() => setEditingObjectives(null)}
+                          disabled={isPending}
+                        >
+                          <X size={15} aria-hidden="true" /> إلغاء
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <ol className="objectives-list" key={`${selectedLesson.id}-${objectives.join('|')}`}>
+                        {objectives.slice(0, 3).map((objective, index) => (
+                          <li key={`${index}-${objective}`}>{objective}</li>
+                        ))}
+                      </ol>
+                      {hasCustomObjectives && (
+                        <span className="objectives-modified"><Check size={12} aria-hidden="true" /> أهداف معدّلة يدويًا</span>
+                      )}
+                    </>
                   )}
                 </div>
 

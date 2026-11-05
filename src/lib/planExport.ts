@@ -18,6 +18,7 @@ export type PlanOverride = {
   week: number
   lessonId: string
   homeworkText: string | null
+  objectives: string[] | null
 }
 
 type ExportInput = {
@@ -57,11 +58,14 @@ function planRows({ schoolClass, week, lessons, teachers, overrides }: ExportInp
     const homework = override?.lessonId === lesson.id && override.homeworkText
       ? override.homeworkText
       : lesson.homework
+    const objectives = override?.lessonId === lesson.id && override.objectives?.length
+      ? override.objectives.slice(0, 3)
+      : lesson.objectives
     const teacherNames = [...new Set(subjectLessons.map((item) => item.teacherId))]
       .map((id) => teachers[id]?.name)
       .filter(Boolean)
       .join('، ')
-    return { subject, lesson, homework, teacherNames, periods: subjectLessons.length }
+    return { subject, lesson, objectives, homework, teacherNames, periods: subjectLessons.length }
   })
 }
 
@@ -105,14 +109,15 @@ async function createPlanPdf(input: ExportInput) {
   ].join(';')
 
   const rowsHtml = rows.map((row) => `
-    <div style="display:grid;grid-template-columns:220px 460px 600px;gap:20px;align-items:center;min-height:68px;padding:9px 12px;border-bottom:1px solid #dedede;box-sizing:border-box;">
+    <div style="display:grid;grid-template-columns:170px 310px 400px 400px;gap:20px;align-items:center;min-height:68px;padding:9px 12px;border-bottom:1px solid #dedede;box-sizing:border-box;">
       <div>
         <div style="font-size:19px;font-weight:800;line-height:1.4;">${escapeHtml(row.subject)}</div>
         <div style="font-size:13px;color:#6b6b6b;line-height:1.5;">${escapeHtml(row.teacherNames)}</div>
         <div style="font-size:12px;color:#a01768;font-weight:700;">${toArabicNumber(row.periods)} ${row.periods === 1 ? 'حصة' : 'حصص'} هذا الأسبوع</div>
       </div>
-      <div style="font-size:16px;font-weight:700;line-height:1.55;">${escapeHtml(row.lesson.title)}</div>
-      <div style="font-size:15px;line-height:1.6;white-space:pre-wrap;">${escapeHtml(row.homework)}</div>
+      <div style="font-size:15px;font-weight:700;line-height:1.5;">${escapeHtml(row.lesson.title)}</div>
+      <ol style="margin:0;padding-right:21px;font-size:13px;line-height:1.5;">${row.objectives.map((objective) => `<li style="margin-bottom:4px;">${escapeHtml(objective)}</li>`).join('')}</ol>
+      <div style="font-size:14px;line-height:1.55;white-space:pre-wrap;">${escapeHtml(row.homework)}</div>
     </div>
   `).join('')
 
@@ -129,12 +134,12 @@ async function createPlanPdf(input: ExportInput) {
       <div style="padding:7px 22px;background:#fff5fa;color:#6b6b6b;font-size:12px;border-bottom:1px solid #dedede;">
         توزيع استرشادي قابل للتعديل، وليس توزيعًا رسميًا صادرًا عن المدرسة. يشمل التعديلات المحفوظة حتى لحظة التنزيل.
       </div>
-      <div style="display:grid;grid-template-columns:220px 460px 600px;gap:20px;padding:9px 12px;background:#f5f5f5;border-bottom:1px solid #202020;font-size:14px;font-weight:800;box-sizing:border-box;">
-        <div>المادة والمعلم</div><div>الدرس المفترض</div><div>الواجب المرتبط</div>
+      <div style="display:grid;grid-template-columns:170px 310px 400px 400px;gap:20px;padding:9px 12px;background:#f5f5f5;border-bottom:1px solid #202020;font-size:14px;font-weight:800;box-sizing:border-box;">
+        <div>المادة والمعلم</div><div>الدرس المفترض</div><div>أهداف الدرس</div><div>الواجب المرتبط</div>
       </div>
       ${rowsHtml}
       <div style="display:flex;justify-content:space-between;padding:9px 22px;color:#6b6b6b;font-size:11px;">
-        <span>الواجبات والدروس قابلة للتحديث من صفحة الجدول</span><span>صفحة واحدة</span>
+        <span>الدروس والأهداف والواجبات قابلة للتحديث من صفحة الجدول</span><span>صفحة واحدة</span>
       </div>
     </div>
   `
