@@ -1,0 +1,2119 @@
+{
+  "school": "مجمع العماير — الابتدائية والمتوسطة والثانوية",
+  "title": "الجدول العام للمعلمين",
+  "term": "الفصل الأول ١٤٤٨هـ",
+  "days": [
+    "الأحد",
+    "الإثنين",
+    "الثلاثاء",
+    "الأربعاء",
+    "الخميس"
+  ],
+  "periods": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "teachers": [
+    {
+      "id": 0,
+      "name": "متعب عسيري",
+      "load": 24
+    },
+    {
+      "id": 1,
+      "name": "فهد الشمراني",
+      "load": 19
+    },
+    {
+      "id": 2,
+      "name": "مانع الحبابي",
+      "load": 13
+    },
+    {
+      "id": 3,
+      "name": "طارق ناصر",
+      "load": 18
+    },
+    {
+      "id": 4,
+      "name": "عبدالرحمن الزهراني",
+      "load": 20
+    },
+    {
+      "id": 5,
+      "name": "أسامه عبدالله",
+      "load": 20
+    },
+    {
+      "id": 6,
+      "name": "محمد الزهراني",
+      "load": 18
+    },
+    {
+      "id": 7,
+      "name": "محمد القيسي",
+      "load": 19
+    },
+    {
+      "id": 8,
+      "name": "محمد الاسمري",
+      "load": 20
+    },
+    {
+      "id": 9,
+      "name": "فيصل الزبيدي",
+      "load": 18
+    },
+    {
+      "id": 10,
+      "name": "عبدالعزيز الشبوي",
+      "load": 8
+    },
+    {
+      "id": 11,
+      "name": "ناصر سياف",
+      "load": 19
+    },
+    {
+      "id": 12,
+      "name": "احمد الشهري",
+      "load": 19
+    },
+    {
+      "id": 13,
+      "name": "علي الحبابي",
+      "load": 24
+    },
+    {
+      "id": 14,
+      "name": "عبدالله الزهراني",
+      "load": 24
+    }
+  ],
+  "classes": [
+    {
+      "id": "ب٤",
+      "name": "الصف الرابع الابتدائي"
+    },
+    {
+      "id": "ب٥",
+      "name": "الصف الخامس الابتدائي"
+    },
+    {
+      "id": "ب٦",
+      "name": "الصف السادس الابتدائي"
+    },
+    {
+      "id": "م١",
+      "name": "الصف الأول المتوسط"
+    },
+    {
+      "id": "م٢",
+      "name": "الصف الثاني المتوسط"
+    },
+    {
+      "id": "م٣",
+      "name": "الصف الثالث المتوسط"
+    },
+    {
+      "id": "ث١",
+      "name": "الصف الأول الثانوي"
+    },
+    {
+      "id": "ث٢",
+      "name": "الصف الثاني الثانوي"
+    },
+    {
+      "id": "ث٣",
+      "name": "الصف الثالث الثانوي"
+    }
+  ],
+  "lessons": [
+    {
+      "teacherId": 0,
+      "classId": "ث١",
+      "day": 0,
+      "period": 7,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ث٢",
+      "day": 0,
+      "period": 5,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "م٢",
+      "day": 0,
+      "period": 4,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "م١",
+      "day": 0,
+      "period": 1,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "م١",
+      "day": 1,
+      "period": 7,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ب٥",
+      "day": 1,
+      "period": 6,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ب٤",
+      "day": 1,
+      "period": 4,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ب٦",
+      "day": 1,
+      "period": 3,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ث٢",
+      "day": 1,
+      "period": 2,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ث١",
+      "day": 1,
+      "period": 1,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ب٤",
+      "day": 2,
+      "period": 6,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "م١",
+      "day": 2,
+      "period": 5,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ث١",
+      "day": 2,
+      "period": 4,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ث٢",
+      "day": 2,
+      "period": 2,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "م٢",
+      "day": 2,
+      "period": 1,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ث١",
+      "day": 3,
+      "period": 5,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ب٦",
+      "day": 3,
+      "period": 3,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "م٢",
+      "day": 3,
+      "period": 2,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ث٢",
+      "day": 3,
+      "period": 1,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ث١",
+      "day": 4,
+      "period": 6,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ب٥",
+      "day": 4,
+      "period": 5,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "م١",
+      "day": 4,
+      "period": 4,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "ث٢",
+      "day": 4,
+      "period": 2,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 0,
+      "classId": "م٢",
+      "day": 4,
+      "period": 1,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث٢",
+      "day": 0,
+      "period": 4,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "م٢",
+      "day": 0,
+      "period": 3,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ب٦",
+      "day": 0,
+      "period": 1,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 1,
+      "classId": "م٣",
+      "day": 1,
+      "period": 7,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث٣",
+      "day": 1,
+      "period": 2,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث٢",
+      "day": 1,
+      "period": 1,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث١",
+      "day": 2,
+      "period": 6,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "م٣",
+      "day": 2,
+      "period": 5,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث٢",
+      "day": 2,
+      "period": 4,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث٣",
+      "day": 2,
+      "period": 2,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "م٣",
+      "day": 3,
+      "period": 6,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 1,
+      "classId": "م٢",
+      "day": 3,
+      "period": 5,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث٢",
+      "day": 3,
+      "period": 4,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث١",
+      "day": 3,
+      "period": 1,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث٣",
+      "day": 4,
+      "period": 6,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث٢",
+      "day": 4,
+      "period": 5,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ب٦",
+      "day": 4,
+      "period": 4,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 1,
+      "classId": "م٣",
+      "day": 4,
+      "period": 3,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 1,
+      "classId": "ث١",
+      "day": 4,
+      "period": 2,
+      "subject": "كيمياء"
+    },
+    {
+      "teacherId": 2,
+      "classId": "م٣",
+      "day": 0,
+      "period": 7,
+      "subject": "فنية"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث٢",
+      "day": 0,
+      "period": 3,
+      "subject": "فيزياء"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث٣",
+      "day": 0,
+      "period": 2,
+      "subject": "فيزياء"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث٣",
+      "day": 1,
+      "period": 1,
+      "subject": "فيزياء"
+    },
+    {
+      "teacherId": 2,
+      "classId": "م٣",
+      "day": 2,
+      "period": 7,
+      "subject": "فنية"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث٣",
+      "day": 2,
+      "period": 4,
+      "subject": "فيزياء"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث٢",
+      "day": 2,
+      "period": 3,
+      "subject": "فيزياء"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث٢",
+      "day": 3,
+      "period": 5,
+      "subject": "فيزياء"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث١",
+      "day": 3,
+      "period": 3,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث٣",
+      "day": 3,
+      "period": 2,
+      "subject": "فيزياء"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث١",
+      "day": 4,
+      "period": 5,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث٢",
+      "day": 4,
+      "period": 4,
+      "subject": "فيزياء"
+    },
+    {
+      "teacherId": 2,
+      "classId": "ث٣",
+      "day": 4,
+      "period": 3,
+      "subject": "فيزياء"
+    },
+    {
+      "teacherId": 3,
+      "classId": "م١",
+      "day": 0,
+      "period": 2,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٣",
+      "day": 0,
+      "period": 1,
+      "subject": "مهارات ادارية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "م٢",
+      "day": 1,
+      "period": 5,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٣",
+      "day": 1,
+      "period": 4,
+      "subject": "مهارات ادارية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٢",
+      "day": 1,
+      "period": 3,
+      "subject": "تاريخ"
+    },
+    {
+      "teacherId": 3,
+      "classId": "م٣",
+      "day": 2,
+      "period": 6,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٢",
+      "day": 2,
+      "period": 5,
+      "subject": "تاريخ"
+    },
+    {
+      "teacherId": 3,
+      "classId": "م٢",
+      "day": 2,
+      "period": 3,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٣",
+      "day": 2,
+      "period": 1,
+      "subject": "مهارات ادارية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٣",
+      "day": 3,
+      "period": 6,
+      "subject": "مهارات البحث"
+    },
+    {
+      "teacherId": 3,
+      "classId": "م١",
+      "day": 3,
+      "period": 5,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "م٢",
+      "day": 3,
+      "period": 4,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "م٣",
+      "day": 3,
+      "period": 2,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٣",
+      "day": 3,
+      "period": 1,
+      "subject": "مهارات ادارية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٢",
+      "day": 4,
+      "period": 6,
+      "subject": "تاريخ"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٣",
+      "day": 4,
+      "period": 4,
+      "subject": "مهارات البحث"
+    },
+    {
+      "teacherId": 3,
+      "classId": "م١",
+      "day": 4,
+      "period": 2,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 3,
+      "classId": "ث٣",
+      "day": 4,
+      "period": 1,
+      "subject": "مهارات ادارية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٢",
+      "day": 0,
+      "period": 6,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م١",
+      "day": 0,
+      "period": 5,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٣",
+      "day": 0,
+      "period": 4,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "ث١",
+      "day": 0,
+      "period": 2,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٢",
+      "day": 1,
+      "period": 6,
+      "subject": "فنية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٣",
+      "day": 1,
+      "period": 5,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٢",
+      "day": 1,
+      "period": 4,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "ث١",
+      "day": 1,
+      "period": 2,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م١",
+      "day": 1,
+      "period": 1,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٢",
+      "day": 2,
+      "period": 6,
+      "subject": "فنية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٢",
+      "day": 2,
+      "period": 5,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٣",
+      "day": 2,
+      "period": 4,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م١",
+      "day": 2,
+      "period": 2,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م١",
+      "day": 3,
+      "period": 7,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "ث١",
+      "day": 3,
+      "period": 2,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٢",
+      "day": 3,
+      "period": 1,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٢",
+      "day": 4,
+      "period": 6,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م٣",
+      "day": 4,
+      "period": 5,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "ث١",
+      "day": 4,
+      "period": 4,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 4,
+      "classId": "م١",
+      "day": 4,
+      "period": 3,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م١",
+      "day": 0,
+      "period": 6,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٣",
+      "day": 0,
+      "period": 5,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "ب٥",
+      "day": 0,
+      "period": 4,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م١",
+      "day": 0,
+      "period": 3,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٢",
+      "day": 0,
+      "period": 1,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م١",
+      "day": 1,
+      "period": 5,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٣",
+      "day": 1,
+      "period": 4,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٢",
+      "day": 1,
+      "period": 3,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٢",
+      "day": 1,
+      "period": 1,
+      "subject": "المهارات الأسرية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م١",
+      "day": 2,
+      "period": 6,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٢",
+      "day": 2,
+      "period": 4,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٢",
+      "day": 2,
+      "period": 2,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٣",
+      "day": 2,
+      "period": 1,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م١",
+      "day": 3,
+      "period": 4,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٣",
+      "day": 3,
+      "period": 3,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "ب٥",
+      "day": 3,
+      "period": 2,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م١",
+      "day": 4,
+      "period": 6,
+      "subject": "المهارات الأسرية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٣",
+      "day": 4,
+      "period": 4,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٢",
+      "day": 4,
+      "period": 3,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 5,
+      "classId": "م٣",
+      "day": 4,
+      "period": 2,
+      "subject": "المهارات الأسرية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "ث١",
+      "day": 0,
+      "period": 6,
+      "subject": "التفكير الناقد"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م٢",
+      "day": 0,
+      "period": 5,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "ث١",
+      "day": 0,
+      "period": 3,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م٣",
+      "day": 0,
+      "period": 2,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "ث١",
+      "day": 1,
+      "period": 7,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "ث١",
+      "day": 1,
+      "period": 6,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "ث١",
+      "day": 1,
+      "period": 4,
+      "subject": "التفكير الناقد"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م٣",
+      "day": 1,
+      "period": 3,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م٢",
+      "day": 1,
+      "period": 2,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "ث٣",
+      "day": 2,
+      "period": 6,
+      "subject": "المواطنة الرقمية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "ث١",
+      "day": 2,
+      "period": 5,
+      "subject": "التفكير الناقد"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م١",
+      "day": 2,
+      "period": 3,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م٣",
+      "day": 2,
+      "period": 2,
+      "subject": "التفكير الناقد"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م٣",
+      "day": 3,
+      "period": 5,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م٣",
+      "day": 3,
+      "period": 4,
+      "subject": "التفكير الناقد"
+    },
+    {
+      "teacherId": 6,
+      "classId": "ث٣",
+      "day": 3,
+      "period": 3,
+      "subject": "المواطنة الرقمية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م١",
+      "day": 3,
+      "period": 1,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 6,
+      "classId": "م٣",
+      "day": 4,
+      "period": 1,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 7,
+      "classId": "م٢",
+      "day": 0,
+      "period": 7,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٦",
+      "day": 0,
+      "period": 4,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٤",
+      "day": 0,
+      "period": 2,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٥",
+      "day": 1,
+      "period": 2,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٦",
+      "day": 1,
+      "period": 1,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٥",
+      "day": 2,
+      "period": 5,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٤",
+      "day": 2,
+      "period": 4,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٤",
+      "day": 2,
+      "period": 3,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٥",
+      "day": 2,
+      "period": 2,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٤",
+      "day": 2,
+      "period": 1,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 7,
+      "classId": "م٢",
+      "day": 3,
+      "period": 6,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٤",
+      "day": 3,
+      "period": 5,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٤",
+      "day": 3,
+      "period": 3,
+      "subject": "فنية"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٦",
+      "day": 3,
+      "period": 2,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٤",
+      "day": 4,
+      "period": 6,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "م٢",
+      "day": 4,
+      "period": 5,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "م٢",
+      "day": 4,
+      "period": 4,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٥",
+      "day": 4,
+      "period": 3,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 7,
+      "classId": "ب٦",
+      "day": 4,
+      "period": 1,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ث١",
+      "day": 0,
+      "period": 4,
+      "subject": "قرن وتفسير ١"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٦",
+      "day": 0,
+      "period": 3,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٥",
+      "day": 0,
+      "period": 2,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٤",
+      "day": 0,
+      "period": 1,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٦",
+      "day": 1,
+      "period": 2,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٥",
+      "day": 1,
+      "period": 1,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٦",
+      "day": 2,
+      "period": 6,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٤",
+      "day": 2,
+      "period": 5,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٥",
+      "day": 2,
+      "period": 4,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ث١",
+      "day": 2,
+      "period": 3,
+      "subject": "قرن وتفسير ١"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ث١",
+      "day": 3,
+      "period": 6,
+      "subject": "قرن وتفسير ١"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٦",
+      "day": 3,
+      "period": 5,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٥",
+      "day": 3,
+      "period": 4,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٤",
+      "day": 3,
+      "period": 2,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٤",
+      "day": 3,
+      "period": 1,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٦",
+      "day": 4,
+      "period": 6,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٤",
+      "day": 4,
+      "period": 5,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٥",
+      "day": 4,
+      "period": 4,
+      "subject": "الدراسات الإسلامية"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ث١",
+      "day": 4,
+      "period": 3,
+      "subject": "قرن وتفسير ١"
+    },
+    {
+      "teacherId": 8,
+      "classId": "ب٥",
+      "day": 4,
+      "period": 1,
+      "subject": "فنية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٥",
+      "day": 0,
+      "period": 6,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٥",
+      "day": 0,
+      "period": 5,
+      "subject": "المهارات الأسرية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٤",
+      "day": 0,
+      "period": 4,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٤",
+      "day": 0,
+      "period": 3,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "م١",
+      "day": 1,
+      "period": 6,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٤",
+      "day": 1,
+      "period": 5,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٦",
+      "day": 1,
+      "period": 4,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٤",
+      "day": 1,
+      "period": 2,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٦",
+      "day": 2,
+      "period": 4,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٦",
+      "day": 2,
+      "period": 3,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٦",
+      "day": 2,
+      "period": 2,
+      "subject": "فنية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٥",
+      "day": 2,
+      "period": 1,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٥",
+      "day": 3,
+      "period": 6,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٦",
+      "day": 3,
+      "period": 4,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٥",
+      "day": 3,
+      "period": 3,
+      "subject": "الدراسات الاجتماعية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "م١",
+      "day": 3,
+      "period": 2,
+      "subject": "المهارات الرقمية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٦",
+      "day": 4,
+      "period": 3,
+      "subject": "المهارات الأسرية"
+    },
+    {
+      "teacherId": 9,
+      "classId": "ب٤",
+      "day": 4,
+      "period": 2,
+      "subject": "المهارات الأسرية"
+    },
+    {
+      "teacherId": 10,
+      "classId": "م٣",
+      "day": 0,
+      "period": 6,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 10,
+      "classId": "ث٣",
+      "day": 0,
+      "period": 4,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 10,
+      "classId": "ث٣",
+      "day": 0,
+      "period": 3,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 10,
+      "classId": "م٣",
+      "day": 0,
+      "period": 1,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 10,
+      "classId": "م٣",
+      "day": 1,
+      "period": 6,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 10,
+      "classId": "ث٣",
+      "day": 1,
+      "period": 5,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 10,
+      "classId": "ث٣",
+      "day": 1,
+      "period": 3,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 10,
+      "classId": "م٣",
+      "day": 1,
+      "period": 2,
+      "subject": "انجليزي"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٤",
+      "day": 0,
+      "period": 6,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٦",
+      "day": 0,
+      "period": 5,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٥",
+      "day": 0,
+      "period": 3,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ث٢",
+      "day": 0,
+      "period": 2,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٦",
+      "day": 1,
+      "period": 6,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٥",
+      "day": 1,
+      "period": 5,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ث٢",
+      "day": 1,
+      "period": 4,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٥",
+      "day": 1,
+      "period": 3,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٤",
+      "day": 1,
+      "period": 1,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٤",
+      "day": 2,
+      "period": 2,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٦",
+      "day": 2,
+      "period": 1,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٦",
+      "day": 3,
+      "period": 6,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٤",
+      "day": 3,
+      "period": 4,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ث٢",
+      "day": 3,
+      "period": 3,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٥",
+      "day": 3,
+      "period": 1,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٦",
+      "day": 4,
+      "period": 5,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٤",
+      "day": 4,
+      "period": 4,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ب٥",
+      "day": 4,
+      "period": 2,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 11,
+      "classId": "ث٢",
+      "day": 4,
+      "period": 1,
+      "subject": "اللغة العربية"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٢",
+      "day": 0,
+      "period": 6,
+      "subject": "أحياء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٣",
+      "day": 0,
+      "period": 5,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 12,
+      "classId": "م١",
+      "day": 0,
+      "period": 4,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث١",
+      "day": 0,
+      "period": 1,
+      "subject": "أحياء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٢",
+      "day": 1,
+      "period": 6,
+      "subject": "أحياء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث١",
+      "day": 1,
+      "period": 5,
+      "subject": "أحياء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "م١",
+      "day": 1,
+      "period": 4,
+      "subject": "فنية"
+    },
+    {
+      "teacherId": 12,
+      "classId": "م١",
+      "day": 1,
+      "period": 3,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 12,
+      "classId": "م١",
+      "day": 2,
+      "period": 7,
+      "subject": "فنية"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٢",
+      "day": 2,
+      "period": 6,
+      "subject": "أحياء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٣",
+      "day": 2,
+      "period": 5,
+      "subject": "علوم الفضاء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٣",
+      "day": 2,
+      "period": 3,
+      "subject": "علوم الفضاء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث١",
+      "day": 2,
+      "period": 1,
+      "subject": "أحياء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "م١",
+      "day": 3,
+      "period": 6,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٣",
+      "day": 3,
+      "period": 5,
+      "subject": "علوم الفضاء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٣",
+      "day": 3,
+      "period": 4,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٢",
+      "day": 3,
+      "period": 2,
+      "subject": "أحياء"
+    },
+    {
+      "teacherId": 12,
+      "classId": "ث٣",
+      "day": 4,
+      "period": 2,
+      "subject": "بدنية"
+    },
+    {
+      "teacherId": 12,
+      "classId": "م١",
+      "day": 4,
+      "period": 1,
+      "subject": "علوم"
+    },
+    {
+      "teacherId": 13,
+      "classId": "م١",
+      "day": 0,
+      "period": 7,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٦",
+      "day": 0,
+      "period": 6,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٤",
+      "day": 0,
+      "period": 5,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٦",
+      "day": 0,
+      "period": 2,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٥",
+      "day": 0,
+      "period": 1,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٤",
+      "day": 1,
+      "period": 6,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٦",
+      "day": 1,
+      "period": 5,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٥",
+      "day": 1,
+      "period": 4,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٤",
+      "day": 1,
+      "period": 3,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "م١",
+      "day": 1,
+      "period": 2,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٥",
+      "day": 2,
+      "period": 6,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٦",
+      "day": 2,
+      "period": 5,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "م١",
+      "day": 2,
+      "period": 4,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٥",
+      "day": 2,
+      "period": 3,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "م١",
+      "day": 2,
+      "period": 1,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٤",
+      "day": 3,
+      "period": 6,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٥",
+      "day": 3,
+      "period": 5,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "م١",
+      "day": 3,
+      "period": 3,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٦",
+      "day": 3,
+      "period": 1,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٥",
+      "day": 4,
+      "period": 6,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "م١",
+      "day": 4,
+      "period": 5,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٤",
+      "day": 4,
+      "period": 3,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٦",
+      "day": 4,
+      "period": 2,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 13,
+      "classId": "ب٤",
+      "day": 4,
+      "period": 1,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث٣",
+      "day": 0,
+      "period": 7,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث٣",
+      "day": 0,
+      "period": 6,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث١",
+      "day": 0,
+      "period": 5,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٣",
+      "day": 0,
+      "period": 3,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٢",
+      "day": 0,
+      "period": 2,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث٢",
+      "day": 0,
+      "period": 1,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٢",
+      "day": 1,
+      "period": 7,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث٣",
+      "day": 1,
+      "period": 6,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث٢",
+      "day": 1,
+      "period": 5,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث١",
+      "day": 1,
+      "period": 3,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٣",
+      "day": 1,
+      "period": 1,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٢",
+      "day": 2,
+      "period": 7,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٣",
+      "day": 2,
+      "period": 3,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث١",
+      "day": 2,
+      "period": 2,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث٢",
+      "day": 2,
+      "period": 1,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث٢",
+      "day": 3,
+      "period": 6,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث١",
+      "day": 3,
+      "period": 4,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٢",
+      "day": 3,
+      "period": 3,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٣",
+      "day": 3,
+      "period": 1,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٣",
+      "day": 4,
+      "period": 6,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث٣",
+      "day": 4,
+      "period": 5,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث٢",
+      "day": 4,
+      "period": 3,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "م٢",
+      "day": 4,
+      "period": 2,
+      "subject": "رياضيات"
+    },
+    {
+      "teacherId": 14,
+      "classId": "ث١",
+      "day": 4,
+      "period": 1,
+      "subject": "رياضيات"
+    }
+  ]
+}
