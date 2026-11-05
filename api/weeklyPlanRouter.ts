@@ -5,6 +5,7 @@ import {
   findWeeklyPlanWeekOverrides,
   setWeeklyPlanHomework,
   setWeeklyPlanLesson,
+  setWeeklyPlanObjectives,
 } from "./queries/weeklyPlan";
 
 const planSelector = z.object({
@@ -39,4 +40,14 @@ export const weeklyPlanRouter = createRouter({
       }),
     )
     .mutation(({ input }) => setWeeklyPlanHomework(input)),
+
+  setObjectives: publicQuery
+    .input(
+      planSelector.extend({
+        subject: z.string().min(1).max(100),
+        lessonId: z.string().regex(/^(?:[1-9]|1[0-6])$/),
+        objectives: z.array(z.string().trim().min(1).max(500)).min(1).max(3),
+      }),
+    )
+    .mutation(({ input }) => setWeeklyPlanObjectives(input)),
 });
