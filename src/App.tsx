@@ -4,6 +4,7 @@ import {
   GraduationCap,
   LayoutGrid,
   NotebookTabs,
+  Pencil,
   Printer,
   UserRound,
 } from 'lucide-react'
@@ -14,21 +15,19 @@ import '@fontsource/tajawal/800.css'
 import rawSchedule from './data/schedule.json'
 import { getInitialWeek, planWeeks } from './data/weeklyPlan'
 import WeeklyPlan from './components/WeeklyPlan'
+import ScheduleEditor from './components/ScheduleEditor'
+import InstallAppPrompt from './components/InstallAppPrompt'
+import { trpc } from '@/providers/trpc'
+import type {
+  ScheduleLesson,
+  ScheduleSubject,
+  SchoolClass,
+  Teacher,
+} from '@contracts/types'
 import './App.css'
 
 type ViewMode = 'all' | 'class' | 'teacher' | 'plan'
 type PlanScope = 'class' | 'teacher'
-
-type Lesson = {
-  teacherId: number
-  classId: string
-  day: number
-  period: number
-  subject: string
-}
-
-type Teacher = { id: number; name: string; load: number }
-type SchoolClass = { id: string; name: string }
 
 type ScheduleData = {
   school: string
@@ -38,10 +37,35 @@ type ScheduleData = {
   periods: number[]
   teachers: Teacher[]
   classes: SchoolClass[]
-  lessons: Lesson[]
+  lessons: ScheduleLesson[]
+  subjects: ScheduleSubject[]
 }
 
-const schedule = rawSchedule as ScheduleData
+const staticSchedule = rawSchedule as unknown as Omit<ScheduleData, 'lessons' | 'subjects'> & {
+  lessons: Array<Omit<ScheduleLesson, 'id' | 'subjectKey'>>
+}
+
+const fallbackSchedule: ScheduleData = {
+  ...staticSchedule,
+  lessons: staticSchedule.lessons.map((lesson) => ({
+    ...lesson,
+    id: `static-${lesson.classId}-${lesson.day}-${lesson.period}`,
+    subjectKey: lesson.subject,
+  })),
+  subjects: staticSchedule.lessons.reduce<ScheduleSubject[]>((items, lesson) => {
+    if (items.some((item) => item.classId === lesson.classId && item.subjectKey === lesson.subject)) {
+      return items
+    }
+    const sortOrder = items.filter((item) => item.classId === lesson.classId).length
+    items.push({
+      classId: lesson.classId,
+      subjectKey: lesson.subject,
+      name: lesson.subject,
+      sortOrder,
+    })
+    return items
+  }, []),
+}
 const arabicDigits = '٠١٢٣٤٥٦٧٨٩'
 const toArabicNumber = (value: number) =>
   String(value).replace(/\d/g, (digit) => arabicDigits[Number(digit)])
@@ -49,9 +73,11 @@ const toArabicNumber = (value: number) =>
 function LessonDetails({
   lesson,
   context,
+  schedule,
 }: {
-  lesson: Lesson
+  lesson: ScheduleLesson
   context: 'class' | 'teacher' | 'all'
+  schedule: ScheduleData
 }) {
   const teacher = schedule.teachers[lesson.teacherId]
   const schoolClass = schedule.classes.find((item) => item.id === lesson.classId)
@@ -82,10 +108,12 @@ function PeriodList({
   lessons,
   day,
   context,
+  schedule,
 }: {
-  lessons: Lesson[]
+  lessons: ScheduleLesson[]
   day: number
   context: 'class' | 'teacher' | 'all'
+  schedule: ScheduleData
 }) {
   return (
     <ol className="period-list" aria-label={`حصص يوم ${schedule.days[day]}`}>
@@ -101,7 +129,7 @@ function PeriodList({
             </div>
             {lesson ? (
               <div className="period-lesson">
-                <LessonDetails lesson={lesson} context={context} />
+                <LessonDetails lesson={lesson} context={context} schedule={schedule} />
               </div>
             ) : (
               <span className="empty-label">لا توجد حصة</span>
@@ -116,9 +144,11 @@ function PeriodList({
 function WeeklySchedule({
   lessons,
   context,
+  schedule,
 }: {
-  lessons: Lesson[]
+  lessons: ScheduleLesson[]
   context: 'class' | 'teacher'
+  schedule: ScheduleData
 }) {
   return (
     <>
@@ -147,7 +177,7 @@ function WeeklySchedule({
                   return (
                     <td className={lesson ? 'weekly-lesson' : 'weekly-lesson is-empty'} key={period}>
                       {lesson ? (
-                        <LessonDetails lesson={lesson} context={context} />
+                        <LessonDetails lesson={lesson} context={context} schedule={schedule} />
                       ) : (
                         <span aria-label="لا توجد حصة">—</span>
                       )}
@@ -169,7 +199,7 @@ function WeeklySchedule({
                 <h3 id={`day-${context}-${dayIndex}`}>{day}</h3>
                 <span>{toArabicNumber(dayLoad)} حصص</span>
               </div>
-              <PeriodList lessons={lessons} day={dayIndex} context={context} />
+              <PeriodList lessons={lessons} day={dayIndex} context={context} schedule={schedule} />
             </section>
           )
         })}
@@ -178,7 +208,7 @@ function WeeklySchedule({
   )
 }
 
-function MasterTable() {
+function MasterTable({ schedule }: { schedule: ScheduleData }) {
   return (
     <div className="master-desktop table-scroll">
       <table className="master-table">
@@ -225,7 +255,7 @@ function MasterTable() {
                   )
                 }),
               )}
-              <td className="load-column"><strong>{toArabicNumber(teacher.load)}</strong></td>
+              <td className="load-column"><strong>{toArabicNumber(schedule.lessons.filter((lesson) => lesson.teacherId === teacher.id).length)}</strong></td>
             </tr>
           ))}
         </tbody>
@@ -234,7 +264,13 @@ function MasterTable() {
   )
 }
 
-function MobileMaster({ lessons }: { lessons: Lesson[] }) {
+function MobileMaster({
+  lessons,
+  schedule,
+}: {
+  lessons: ScheduleLesson[]
+  schedule: ScheduleData
+}) {
   const [selectedDay, setSelectedDay] = useState(0)
 
   return (
@@ -260,9 +296,9 @@ function MobileMaster({ lessons }: { lessons: Lesson[] }) {
             <details key={teacher.id} open={index === 0}>
               <summary>
                 <span>{teacher.name}</span>
-                <small>{toArabicNumber(teacher.load)} حصة أسبوعيًا</small>
+                <small>{toArabicNumber(teacherLessons.length)} حصة أسبوعيًا</small>
               </summary>
-              <PeriodList lessons={teacherLessons} day={selectedDay} context="teacher" />
+              <PeriodList lessons={teacherLessons} day={selectedDay} context="teacher" schedule={schedule} />
             </details>
           )
         })}
@@ -272,30 +308,37 @@ function MobileMaster({ lessons }: { lessons: Lesson[] }) {
 }
 
 function App() {
+  const scheduleQuery = trpc.schedule.get.useQuery(undefined, { retry: 1 })
+  const schedule = useMemo<ScheduleData>(() => ({
+    ...fallbackSchedule,
+    lessons: scheduleQuery.data?.lessons ?? fallbackSchedule.lessons,
+    subjects: scheduleQuery.data?.subjects ?? fallbackSchedule.subjects,
+  }), [scheduleQuery.data])
   const [view, setView] = useState<ViewMode>('all')
   const [selectedClass, setSelectedClass] = useState(schedule.classes[0].id)
   const [selectedTeacher, setSelectedTeacher] = useState(schedule.teachers[0].id)
   const [selectedWeek, setSelectedWeek] = useState(getInitialWeek)
   const [planScope, setPlanScope] = useState<PlanScope>('class')
+  const [editMode, setEditMode] = useState(false)
 
   const currentClass = schedule.classes.find((item) => item.id === selectedClass)!
   const currentTeacher = schedule.teachers.find((item) => item.id === selectedTeacher)!
 
   const classLessons = useMemo(
     () => schedule.lessons.filter((lesson) => lesson.classId === selectedClass),
-    [selectedClass],
+    [selectedClass, schedule.lessons],
   )
   const teacherLessons = useMemo(
     () => schedule.lessons.filter((lesson) => lesson.teacherId === selectedTeacher),
-    [selectedTeacher],
+    [selectedTeacher, schedule.lessons],
   )
 
   const planSubjectCount = useMemo(
-    () => new Set(classLessons.map((lesson) => lesson.subject)).size,
+    () => new Set(classLessons.map((lesson) => lesson.subjectKey)).size,
     [classLessons],
   )
   const planTeacherSubjectCount = useMemo(
-    () => new Set(teacherLessons.map((lesson) => `${lesson.classId}|${lesson.subject}`)).size,
+    () => new Set(teacherLessons.map((lesson) => `${lesson.classId}|${lesson.subjectKey}`)).size,
     [teacherLessons],
   )
 
@@ -325,6 +368,7 @@ function App() {
 
   return (
     <div className="app-shell" dir="rtl">
+      <InstallAppPrompt />
       <header className="topbar">
         <div className="brand">
           <span className="brand-mark" aria-hidden="true">ع</span>
@@ -348,7 +392,7 @@ function App() {
                 type="button"
                 className={view === 'all' ? 'view-button is-active' : 'view-button'}
                 aria-pressed={view === 'all'}
-                onClick={() => setView('all')}
+                onClick={() => { setView('all'); setEditMode(false) }}
               >
                 <LayoutGrid size={19} aria-hidden="true" />
                 <span>كامل الجدول</span>
@@ -366,7 +410,7 @@ function App() {
                 type="button"
                 className={view === 'teacher' ? 'view-button is-active' : 'view-button'}
                 aria-pressed={view === 'teacher'}
-                onClick={() => setView('teacher')}
+                onClick={() => { setView('teacher'); setEditMode(false) }}
               >
                 <UserRound size={19} aria-hidden="true" />
                 <span>حسب المعلم</span>
@@ -375,7 +419,7 @@ function App() {
                 type="button"
                 className={view === 'plan' ? 'view-button is-active' : 'view-button'}
                 aria-pressed={view === 'plan'}
-                onClick={() => setView('plan')}
+                onClick={() => { setView('plan'); setEditMode(false) }}
               >
                 <NotebookTabs size={19} aria-hidden="true" />
                 <span>الخطة الأسبوعية للفصول</span>
@@ -412,7 +456,7 @@ function App() {
           {(view === 'class' || (view === 'plan' && planScope === 'class')) && (
             <label className="select-field">
               <span>اختر الفصل</span>
-              <select value={selectedClass} onChange={(event) => setSelectedClass(event.target.value)}>
+              <select value={selectedClass} onChange={(event) => { setSelectedClass(event.target.value); setEditMode(false) }}>
                 {schedule.classes.map((schoolClass) => (
                   <option value={schoolClass.id} key={schoolClass.id}>
                     {schoolClass.name} — {schoolClass.id}
@@ -422,13 +466,29 @@ function App() {
             </label>
           )}
 
+          {view === 'class' && (
+            <div className="edit-schedule-control">
+              <button
+                type="button"
+                className={editMode ? 'edit-schedule-button is-active' : 'edit-schedule-button'}
+                aria-pressed={editMode}
+                onClick={() => setEditMode((current) => !current)}
+                disabled={!scheduleQuery.data}
+              >
+                <Pencil size={17} aria-hidden="true" />
+                {editMode ? 'إنهاء التحرير' : 'تعديل الجدول والمواد'}
+              </button>
+              <p>إعادة ترتيب الحصص والمواد وتعديل بياناتها مع الحفظ المشترك.</p>
+            </div>
+          )}
+
           {(view === 'teacher' || (view === 'plan' && planScope === 'teacher')) && (
             <label className="select-field">
               <span>اختر المعلم</span>
               <select value={selectedTeacher} onChange={(event) => setSelectedTeacher(Number(event.target.value))}>
                 {schedule.teachers.map((teacher) => (
                   <option value={teacher.id} key={teacher.id}>
-                    {teacher.name} — {toArabicNumber(teacher.load)} حصة
+                    {teacher.name} — {toArabicNumber(schedule.lessons.filter((lesson) => lesson.teacherId === teacher.id).length)} حصة
                   </option>
                 ))}
               </select>
@@ -457,9 +517,21 @@ function App() {
             {view === 'plan' ? (
               <>١٦ أسبوعًا دراسيًا<br />دروس وواجبات استرشادية قابلة للتعديل</>
             ) : (
-              <>مطابق للجدول الأسبوعي الأصلي<br />٥ أيام · ٧ حصص يوميًا</>
+              <>الجدول الأسبوعي المشترك<br />٥ أيام · ٧ حصص يوميًا</>
             )}
           </p>
+          <div className={`data-connection${scheduleQuery.isError ? ' is-error' : ''}`} role="status">
+            <span>
+              {scheduleQuery.isLoading
+                ? 'جارٍ تحميل الجدول المشترك…'
+                : scheduleQuery.isError
+                  ? 'تعذر تحميل البيانات المشتركة؛ يظهر الجدول الأصلي مؤقتًا.'
+                  : 'الجدول والخطة متصلان بقاعدة البيانات المشتركة.'}
+            </span>
+            {scheduleQuery.isError && (
+              <button type="button" onClick={() => scheduleQuery.refetch()}>إعادة الاتصال</button>
+            )}
+          </div>
         </aside>
 
         <main className="schedule-main">
@@ -478,15 +550,32 @@ function App() {
             </div>
           </div>
 
-          <div className="schedule-content" key={`${view}-${planScope}-${selectedClass}-${selectedTeacher}-${selectedWeek}`}>
+          <div className="schedule-content" key={`${view}-${planScope}-${selectedClass}-${selectedTeacher}-${selectedWeek}-${editMode}`}>
             {view === 'all' && (
               <>
-                <MasterTable />
-                <MobileMaster lessons={schedule.lessons} />
+                <MasterTable schedule={schedule} />
+                <MobileMaster lessons={schedule.lessons} schedule={schedule} />
               </>
             )}
-            {view === 'class' && <WeeklySchedule lessons={classLessons} context="class" />}
-            {view === 'teacher' && <WeeklySchedule lessons={teacherLessons} context="teacher" />}
+            {view === 'class' && (editMode && scheduleQuery.data ? (
+              <>
+                <ScheduleEditor
+                  classId={selectedClass}
+                  lessons={schedule.lessons}
+                  subjects={schedule.subjects}
+                  teachers={schedule.teachers}
+                  days={schedule.days}
+                  periods={schedule.periods}
+                  toArabicNumber={toArabicNumber}
+                />
+                <div className="print-only-schedule">
+                  <WeeklySchedule lessons={classLessons} context="class" schedule={schedule} />
+                </div>
+              </>
+            ) : (
+              <WeeklySchedule lessons={classLessons} context="class" schedule={schedule} />
+            ))}
+            {view === 'teacher' && <WeeklySchedule lessons={teacherLessons} context="teacher" schedule={schedule} />}
             {view === 'plan' && (
               <WeeklyPlan
                 classId={selectedClass}
@@ -494,6 +583,7 @@ function App() {
                 classes={schedule.classes}
                 week={selectedWeek}
                 lessons={schedule.lessons}
+                subjects={schedule.subjects}
                 teachers={schedule.teachers}
                 teacherId={planScope === 'teacher' ? selectedTeacher : undefined}
                 teacherName={planScope === 'teacher' ? currentTeacher.name : undefined}
