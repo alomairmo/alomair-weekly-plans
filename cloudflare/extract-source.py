@@ -18,6 +18,13 @@ OVERLAY_PATHS = (
     "api/lessonPlansRouter.ts",
     "api/queries/supabase.ts",
     "cloudflare/build-worker.mjs",
+    "src/App.css",
+    "src/components/PlanLessonEditor.tsx",
+    "src/components/PrintablePlan.tsx",
+    "src/components/SchoolSetup.tsx",
+    "src/components/WeeklyPlans.tsx",
+    "src/data/curriculumCatalog.json",
+    "src/lib/classCurriculum.ts",
     "src/lib/schoolPlanExport.ts",
     "vite.config.ts",
 )
