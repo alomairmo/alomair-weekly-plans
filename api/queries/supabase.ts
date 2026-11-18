@@ -1,9 +1,10 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
-import type { WebSocketLikeConstructor } from "@supabase/realtime-js";
 import WebSocket from "ws";
+import type { WebSocketLikeConstructor } from "@supabase/realtime-js";
 
 const SUPABASE_URL = "https://lazyikoawttfcflpdixs.supabase.co";
-// Publishable (anon) key — safe to embed; all tables allow anon select/insert/update.
+// Publishable key only. The lesson-plan tables have no direct anon policies;
+// access goes through session-checked RPC functions. Never add a service key here.
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_RNdKa5FTqDB4KAPSpYP4lg_jIcwVjVI";
 
 let client: SupabaseClient | null = null;

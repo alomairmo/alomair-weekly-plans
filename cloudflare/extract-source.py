@@ -12,6 +12,20 @@ ARCHIVES = {
     "source": "ef8a8c899b729487fac8046be501a1267a1eff7ad81d70876f5d05fd8f00c9cf",
     "api-source": "06e9cbcebb8740f27325ed238d71c79f97c3b809624e149372bd0ffb19051501",
 }
+# Files committed outside the archives are authoritative deployment overlays.
+# Preserve them while the two verified source archives fill in the rest.
+OVERLAY_PATHS = (
+    "api/lessonPlansRouter.ts",
+    "api/queries/supabase.ts",
+    "cloudflare/build-worker.mjs",
+    "src/lib/schoolPlanExport.ts",
+    "vite.config.ts",
+)
+overlays = {
+    relative: (ROOT / relative).read_bytes()
+    for relative in OVERLAY_PATHS
+    if (ROOT / relative).is_file()
+}
 
 for prefix, expected_hash in ARCHIVES.items():
     parts = sorted((ROOT / "cloudflare").glob(f"{prefix}.part.*"))
@@ -29,3 +43,7 @@ for prefix, expected_hash in ARCHIVES.items():
             archive.extractall(ROOT, filter="data")
 
     print(f"Verified and extracted {prefix} ({len(parts)} parts)")
+
+for relative, content in overlays.items():
+    (ROOT / relative).write_bytes(content)
+    print(f"Restored deployment overlay: {relative}")
