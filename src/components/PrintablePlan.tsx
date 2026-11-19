@@ -8,6 +8,7 @@ import type {
 import { days, planWeeks } from '@/data/weeklyPlan'
 import { getVisiblePlanPeriods } from '@/lib/planTable'
 import PlatformBrand from './PlatformBrand'
+import '../plan-options.css'
 
 export type PrintablePlanProps = {
   data: SchoolBootstrap

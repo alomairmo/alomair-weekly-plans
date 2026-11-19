@@ -1,0 +1,6 @@
+.teacher-visibility-toggle { display: flex; align-items: center; gap: .55rem; padding: .45rem .65rem; border: 1px solid var(--line); border-radius: 4px; background: var(--paper-light); cursor: pointer; }
+.teacher-visibility-toggle:has(input:checked) { border-color: var(--teal); background: var(--teal-soft); }
+.teacher-visibility-toggle input { width: 18px; height: 18px; margin: 0; accent-color: var(--teal); cursor: pointer; }
+.teacher-visibility-toggle > span { display: grid; gap: .05rem; }
+.teacher-visibility-toggle strong { color: var(--navy); font-size: .8rem; }
+.teacher-visibility-toggle small { color: var(--muted); font-size: .67rem; }

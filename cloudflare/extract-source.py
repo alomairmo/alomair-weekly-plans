@@ -34,6 +34,7 @@ OVERLAY_PATHS = (
     "src/lib/planTable.ts",
     "src/lib/schoolPlanExport.ts",
     "src/lib/schoolSharing.ts",
+    "src/plan-options.css",
     "vite.config.ts",
 )
 overlays = {
