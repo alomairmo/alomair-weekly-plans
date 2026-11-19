@@ -2,11 +2,12 @@ import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { createRouter, publicQuery } from './middleware'
 import { getSupabase } from './queries/supabase'
-import { verifyNamthajaAccessToken } from './queries/namthajaAuth'
+import { lookupNamthajaUserByEmail, verifyNamthajaAccessToken } from './queries/namthajaAuth'
 import type {
   CurriculumLesson,
   PlatformLoginResult,
   SchoolBootstrap,
+  SchoolLinkedAdmin,
   SchoolRegistration,
   SchoolSession,
   SchoolSetupPayload,
@@ -123,6 +124,7 @@ export const lessonPlansRouter = createRouter({
       return rpc<PlatformLoginResult>('lp_platform_login', {
         p_code: input.code ?? null,
         p_platform_user_id: user.id,
+        p_platform_email: user.email ?? null,
         p_server_secret: platformSecret(ctx),
       })
     }),
@@ -134,6 +136,33 @@ export const lessonPlansRouter = createRouter({
       return rpc<boolean>('lp_claim_school', {
         p_token: input.token,
         p_platform_user_id: user.id,
+        p_server_secret: platformSecret(ctx),
+      })
+    }),
+
+  linkedAdmins: publicQuery
+    .input(z.object({ token }))
+    .query(({ input }) => rpc<SchoolLinkedAdmin[]>('lp_list_school_admins', {
+      p_token: input.token,
+    })),
+
+  addLinkedAdmin: publicQuery
+    .input(z.object({
+      token,
+      email: z.string().trim().toLowerCase().email('أدخل بريدًا إلكترونيًا صالحًا').max(320),
+    }))
+    .mutation(async ({ input, ctx }) => {
+      const account = await lookupNamthajaUserByEmail(input.email, platformSecret(ctx))
+      if (!account) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: 'لا يوجد حساب مسجل في نمذجة التعلم بهذا البريد.',
+        })
+      }
+      return rpc<SchoolLinkedAdmin>('lp_add_school_admin', {
+        p_token: input.token,
+        p_platform_user_id: account.id,
+        p_email: account.email ?? input.email,
         p_server_secret: platformSecret(ctx),
       })
     }),
