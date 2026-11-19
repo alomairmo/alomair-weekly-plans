@@ -16,16 +16,22 @@ ARCHIVES = {
 # Preserve them while the two verified source archives fill in the rest.
 OVERLAY_PATHS = (
     "api/lessonPlansRouter.ts",
+    "api/queries/namthajaAuth.ts",
     "api/queries/supabase.ts",
     "cloudflare/build-worker.mjs",
+    "contracts/lessonPlans.ts",
     "src/App.css",
+    "src/App.tsx",
     "src/components/PlanLessonEditor.tsx",
     "src/components/PrintablePlan.tsx",
+    "src/components/SchoolAuth.tsx",
     "src/components/SchoolSetup.tsx",
+    "src/components/SchoolSharing.tsx",
     "src/components/WeeklyPlans.tsx",
     "src/data/curriculumCatalog.json",
     "src/lib/classCurriculum.ts",
     "src/lib/schoolPlanExport.ts",
+    "src/lib/schoolSharing.ts",
     "vite.config.ts",
 )
 overlays = {
