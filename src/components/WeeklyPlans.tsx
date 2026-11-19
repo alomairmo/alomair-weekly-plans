@@ -46,6 +46,7 @@ export default function WeeklyPlans({ token, data }: WeeklyPlansProps) {
   const [distributionOpen, setDistributionOpen] = useState(true)
   const [editing, setEditing] = useState<{ classId: string; subjectId: string } | null>(null)
   const [exporting, setExporting] = useState(false)
+  const [showTeacherName, setShowTeacherName] = useState(true)
   const [notice, setNotice] = useState('')
   const currentSheet = useRef<HTMLElement>(null)
   const exportSheets = useRef(new Map<string, HTMLElement>())
@@ -329,6 +330,16 @@ export default function WeeklyPlans({ token, data }: WeeklyPlansProps) {
       {notice && <p className="form-success" role="status">{notice}</p>}
 
       <div className="export-toolbar">
+        {view === 'class' && (
+          <label className="teacher-visibility-toggle">
+            <input
+              type="checkbox"
+              checked={showTeacherName}
+              onChange={(event) => setShowTeacherName(event.target.checked)}
+            />
+            <span><strong>إظهار اسم المعلم</strong><small>في الجدول والملفات المحمّلة</small></span>
+          </label>
+        )}
         <span>تنزيل {view === 'class' ? 'الفصل' : 'المعلم'} الحالي أو الجميع</span>
         <div>
           <button type="button" onClick={() => exportCurrent('pdf')} disabled={exporting || !currentTarget}><Download size={17} /> PDF الحالي</button>
@@ -349,6 +360,7 @@ export default function WeeklyPlans({ token, data }: WeeklyPlansProps) {
             view={view}
             target={currentTarget}
             interactive
+            showTeacherName={showTeacherName}
             onEdit={(classId, subjectId) => setEditing({ classId, subjectId })}
           />
         </div>
@@ -404,6 +416,7 @@ export default function WeeklyPlans({ token, data }: WeeklyPlansProps) {
               week={week}
               view={view}
               target={target}
+              showTeacherName={showTeacherName}
             />
           )
         })}
