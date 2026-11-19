@@ -6,6 +6,7 @@ import type {
   WeeklyPlanEntry,
 } from '@contracts/lessonPlans'
 import { days, planWeeks } from '@/data/weeklyPlan'
+import { getVisiblePlanPeriods } from '@/lib/planTable'
 import PlatformBrand from './PlatformBrand'
 
 export type PrintablePlanProps = {
@@ -15,6 +16,7 @@ export type PrintablePlanProps = {
   view: 'class' | 'teacher'
   target: SchoolClass | SchoolTeacher
   interactive?: boolean
+  showTeacherName?: boolean
   onEdit?: (classId: string, subjectId: string) => void
 }
 
@@ -23,7 +25,7 @@ function planFor(entries: WeeklyPlanEntry[], classId: string, subjectId: string)
 }
 
 const PrintablePlan = forwardRef<HTMLElement, PrintablePlanProps>(function PrintablePlan(
-  { data, entries, week, view, target, interactive = false, onEdit },
+  { data, entries, week, view, target, interactive = false, showTeacherName = true, onEdit },
   ref,
 ) {
   const weekInfo = planWeeks.find((item) => item.number === week)
@@ -38,6 +40,7 @@ const PrintablePlan = forwardRef<HTMLElement, PrintablePlanProps>(function Print
         && assignment.subjectId === lesson.subjectId
       ),
   )
+  const visiblePeriods = getVisiblePlanPeriods(slots)
 
   return (
     <section className="plan-sheet" ref={ref} dir="rtl" aria-label={`خطة ${target.name} للأسبوع ${week}`}>
@@ -61,11 +64,11 @@ const PrintablePlan = forwardRef<HTMLElement, PrintablePlanProps>(function Print
             </tr>
           </thead>
           <tbody>
-            {Array.from({ length: 7 }, (_, periodIndex) => (
-              <tr key={periodIndex + 1}>
-                <th className="period-cell">{periodIndex + 1}</th>
+            {visiblePeriods.map((period) => (
+              <tr key={period}>
+                <th className="period-cell">{period}</th>
                 {days.map((_, day) => {
-                  const slot = slots.find((lesson) => lesson.day === day && lesson.period === periodIndex + 1)
+                  const slot = slots.find((lesson) => lesson.day === day && lesson.period === period)
                   if (!slot) return <td className="empty-slot" key={day}>—</td>
                   const subject = data.subjects.find((item) => item.id === slot.subjectId)
                   const className = data.classes.find((item) => item.id === slot.classId)?.name ?? ''
@@ -77,7 +80,9 @@ const PrintablePlan = forwardRef<HTMLElement, PrintablePlanProps>(function Print
                     <>
                       <span className="slot-topline">
                         <strong>{subject?.name ?? 'مادة'}</strong>
-                        <small>{view === 'class' ? teacher : className}</small>
+                        {view === 'class'
+                          ? showTeacherName && teacher ? <small className="slot-teacher-name">{teacher}</small> : null
+                          : <small>{className}</small>}
                       </span>
                       {entry ? (
                         <span className="slot-lesson">
